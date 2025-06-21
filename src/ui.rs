@@ -1,5 +1,6 @@
 use bevy::prelude::{Camera, ParamSet, Query, Res, Text, Transform, With, Without};
-use crate::{Boss, BossHealthText, Enemy, Health, HealthText, HighScore, HighScoreText, Player, PlayerStats, Score, ScoreText, StatsText, WaveState, WaveText, WINDOW_HEIGHT, WINDOW_WIDTH, WORLD_HEIGHT, WORLD_WIDTH};
+use crate::{Boss, BossHealthText, Enemy, Health, HealthText, HighScore, HighScoreText, Player, PlayerStats, Score, ScoreText, StatsText, WaveState, WaveText};
+use crate::constants::*;
 
 pub fn camera_follow(
     mut camera_query: Query<&mut Transform, (With<Camera>, Without<Player>)>,

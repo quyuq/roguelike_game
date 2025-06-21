@@ -2,6 +2,7 @@ use bevy::input::ButtonInput;
 use bevy::math::Vec3;
 use bevy::prelude::{default, Color, Commands, Entity, KeyCode, Query, Res, ResMut, Sprite, SpriteBundle, Time, Transform, With};
 use crate::{AttackTimer, Bullet, BulletDirection, Direction, Facing, GameOver, Health, HighScore, Player, PlayerStats, Score, UpgradeSelection, PLAYER_SPEED};
+use crate::constants::*;
 
 pub fn player_movement(
     keyboard: Res<ButtonInput<KeyCode>>,
@@ -21,7 +22,18 @@ pub fn player_movement(
             transform.translation += direction.normalize() * PLAYER_SPEED * time.delta_seconds();
             facing.0 = new_facing;
         }
+        let half_world_w = WORLD_WIDTH / 2.0;
+        let half_world_h = WORLD_HEIGHT / 2.0;
+        transform.translation.x = transform.translation.x.clamp(
+            -half_world_w + 16.0,
+            half_world_w - 16.0
+        );
+        transform.translation.y = transform.translation.y.clamp(
+            -half_world_h + 16.0,
+            half_world_h - 16.0
+        );
     }
+    
 }
 pub fn player_attack(
     mut commands: Commands,
