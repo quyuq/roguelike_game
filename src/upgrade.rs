@@ -47,6 +47,8 @@ pub fn show_upgrade_ui(
                 UpgradeOption::IncreaseDamage => "提升攻击力",
                 UpgradeOption::IncreaseAttackSpeed => "提升攻速",
                 UpgradeOption::IncreaseBulletCount => "增加弹幕数量",
+                UpgradeOption::IncreaseMaxHealth => "增加最大生命值",
+                UpgradeOption::HealFull => "完全回复生命",
             };
             parent.spawn(
                 TextBundle::from_section(
@@ -91,6 +93,17 @@ pub fn handle_upgrade_input(
                 }
                 UpgradeOption::IncreaseBulletCount => {
                     stats.bullet_count += 2;
+                }
+                UpgradeOption::IncreaseMaxHealth => {
+                    if let Ok(mut health) = player_query.get_single_mut() {
+                        health.max += 2;
+                        health.current += 2; // 加最大生命时同时回复等量当前生命
+                    }
+                }
+                UpgradeOption::HealFull => {
+                    if let Ok(mut health) = player_query.get_single_mut() {
+                        health.current = health.max;
+                    }
                 }
             }
             // 升级回血

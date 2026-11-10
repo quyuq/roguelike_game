@@ -52,6 +52,8 @@ pub fn bullet_hit_enemy(
                             UpgradeOption::IncreaseDamage,
                             UpgradeOption::IncreaseAttackSpeed,
                             UpgradeOption::IncreaseBulletCount,
+                            UpgradeOption::IncreaseMaxHealth,
+                            UpgradeOption::HealFull,
                         ];
                         available.shuffle(&mut rng);
                         upgrade_selection.options = available.into_iter().take(3).collect();

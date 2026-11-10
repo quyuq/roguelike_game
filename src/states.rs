@@ -8,6 +8,8 @@ pub enum UpgradeOption {
     IncreaseDamage,
     IncreaseAttackSpeed,
     IncreaseBulletCount,
+    IncreaseMaxHealth,
+    HealFull,
 }
 
 #[derive(States, Clone, Eq, PartialEq, Debug, Hash, Default)]
